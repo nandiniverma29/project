@@ -1,0 +1,90 @@
+[
+  {
+    "id": "s1001",
+    "name": "Student One",
+    "email": "student1@example.com",
+    "role": "student",
+    "passwordHash": "$2a$10$u5D3z90DK3DR67Xt.V3AIuSVY6KZTtAuXLJjxNhJ8ZI95zxHFxlJK",
+    "createdAt": "2025-09-10T07:22:51.327Z",
+    "phone": "45928",
+    "dob": "",
+    "address": "",
+    "major": "Computer Science",
+    "year": "3rd Year",
+    "enrollmentDate": "2023-08-01",
+    "careerGoal": "Software Developer",
+    "interests": "Web Development, AI/ML, Cybersecurity"
+  },
+  {
+    "id": "t1001",
+    "name": "Teacher One",
+    "email": "teacher1@example.com",
+    "role": "teacher",
+    "passwordHash": "$2a$10$u5D3z90DK3DR67Xt.V3AIuSVY6KZTtAuXLJjxNhJ8ZI95zxHFxlJK",
+    "createdAt": "2025-09-10T07:22:51.327Z"
+  },
+  {
+    "id": "a1001",
+    "name": "Admin One",
+    "email": "admin1@example.com",
+    "role": "admin",
+    "passwordHash": "$2a$10$u5D3z90DK3DR67Xt.V3AIuSVY6KZTtAuXLJjxNhJ8ZI95zxHFxlJK",
+    "createdAt": "2025-09-10T07:22:51.327Z"
+  },
+  {
+    "id": "s1757489106695",
+    "name": "Priya",
+    "email": "student5@example.com",
+    "role": "student",
+    "passwordHash": "$2a$10$thN4CY7JQdMxgF5la9SBd.0vyc5E6Yt34Lro9eWzjmgbghZaInpJe",
+    "createdAt": "2025-09-10T07:25:06.859Z"
+  },
+  {
+    "id": "s1757491863444",
+    "name": "Sia",
+    "email": "sia@example.com",
+    "role": "student",
+    "passwordHash": "$2a$10$GAZI06d35odPRXC1s6eWLuciFnSOWIhHeRu1K2fGZ5gYQtQiTB/am",
+    "createdAt": "2025-09-10T08:11:03.541Z"
+  },
+  {
+    "id": "s1757561622919",
+    "name": "Priya",
+    "email": "priya@gmail",
+    "role": "student",
+    "passwordHash": "$2a$10$mgopVMSXcOlUtFyifI85WusRzz0/T0GOMisdmiJE9LZnCpZ6KU1X6",
+    "createdAt": "2025-09-11T03:33:43.158Z"
+  },
+  {
+    "id": "s1757768241214",
+    "name": "Priya",
+    "email": "nandini@example.com",
+    "role": "student",
+    "passwordHash": "$2a$10$o6iFtgP198jPkthn4QWOY.0NVh4fODPVH9D9u6Yv305crCIqzN7YS",
+    "createdAt": "2025-09-13T12:57:21.288Z",
+    "phone": "768",
+    "dob": "",
+    "address": "",
+    "major": "Computer Science",
+    "year": "3rd Year",
+    "enrollmentDate": "2023-08-01",
+    "careerGoal": "Software Developer",
+    "interests": "Web Development, AI/ML, Cybersecurity"
+  },
+  {
+    "id": "s1757768528325",
+    "name": "Student",
+    "email": "student@example",
+    "role": "student",
+    "passwordHash": "$2a$10$YWoYd6.o/0eUWU3a28mRF.XnVdntm/BsWhmtj9gupo2XQuPZDcqNy",
+    "createdAt": "2025-09-13T13:02:08.445Z"
+  },
+  {
+    "id": "s1757769877937",
+    "name": "Sandhya",
+    "email": "sandhya@example",
+    "role": "student",
+    "passwordHash": "$2a$10$qyPylFVAnBbpOyJzpKjPae9WI5ojvOqpjeqDdRzZmO.F.Pgf3CEwS",
+    "createdAt": "2025-09-13T13:24:38.071Z"
+  }
+]
