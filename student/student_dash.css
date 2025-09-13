@@ -189,12 +189,11 @@ body {
 }
 
 .icon-btn:hover {
-  transform: scale(1.04);
   background: rgba(79, 70, 229, 0.06);
 }
 
 .icon-btn:active {
-  transform: scale(0.98);
+  opacity: 0.8;
 }
 .badge {
   position: absolute;
@@ -598,7 +597,6 @@ html[data-theme="dark"] .timeslot .event.break {
 .btn:focus,
 .icon-btn:hover,
 .icon-btn:focus {
-  transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
   outline: none;
 }
@@ -625,7 +623,7 @@ html[data-theme="dark"] .timeslot .event.break {
 
 /* Micro animations for cards and widgets */
 .card {
-  will-change: transform, box-shadow;
+  will-change: box-shadow;
 }
 
 /* Subtle pulse animation for primary buttons */
@@ -828,7 +826,6 @@ html[data-theme="dark"] .timeslot .event.break {
 .btn:focus,
 .icon-btn:hover,
 .icon-btn:focus {
-  transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
   outline: none;
 }
@@ -855,7 +852,7 @@ html[data-theme="dark"] .timeslot .event.break {
 
 /* Micro animations for cards and widgets */
 .card {
-  will-change: transform, box-shadow;
+  will-change: box-shadow;
 }
 
 /* Subtle pulse animation for primary buttons */

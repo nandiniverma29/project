@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       // Try backend signup first
-      const API_BASE_URL = 'http://localhost:4000/api';
+      const API_BASE_URL = 'http://localhost:5000/api';
       let ok = false;
       try {
         const resp = await fetch(`${API_BASE_URL}/auth/signup`, {
@@ -69,17 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Show success message
         const messageContainer = document.getElementById('message-container');
         if (messageContainer) {
-          messageContainer.textContent = 'Sign-up successful! Please log in to continue.';
+          messageContainer.textContent = 'Sign-up successful! Redirecting to login page...';
           messageContainer.className = 'message-container success';
           messageContainer.style.display = 'block';
-        }
-        
-        // Hide signup form and show login form
-        signupForm.style.display = 'none';
-        const loginForm = document.getElementById('login-form');
-        if (loginForm) {
-          loginForm.style.display = 'block';
-          loginForm.classList.add('active');
         }
         
         // Reset form
@@ -87,8 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
         submitButton.disabled = false;
         submitButton.textContent = 'Create Account';
         
-        // Scroll to top to show the login form
-        window.scrollTo(0, 0);
+        // Redirect to login page after a short delay with success parameter
+        setTimeout(() => {
+          window.location.href = 'index.html?signup=success';
+        }, 2000);
       }
     } catch (error) {
       alert(`Signup Failed: ${error.message}`);

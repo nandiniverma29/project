@@ -190,12 +190,11 @@ body {
 }
 
 .icon-btn:hover {
-  transform: scale(1.04);
   background: rgba(79, 70, 229, 0.06);
 }
 
 .icon-btn:active {
-  transform: scale(0.98);
+  opacity: 0.8;
 }
 .content {
   padding: 1.5rem;
@@ -665,7 +664,6 @@ body {
 .btn:focus,
 .icon-btn:hover,
 .icon-btn:focus {
-  transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
   outline: none;
 }
@@ -692,7 +690,7 @@ body {
 
 /* Micro animations for cards and widgets */
 .card {
-  will-change: transform, box-shadow;
+  will-change: box-shadow;
 }
 
 /* Subtle pulse animation for primary buttons */

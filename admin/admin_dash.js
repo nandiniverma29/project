@@ -110,15 +110,25 @@
     $('#modalTitle').textContent = title;
     $('#modalForm').innerHTML = `
       <div class="form-grid">
-        <div class="field"><label for="userName">Full Name</label><input type="text" id="userName" name="name" required value="${user.name || ''}"></div>
-        <div class="field"><label for="userEmail">Email</label><input type="email" id="userEmail" name="email" required value="${user.email || ''}"></div>
-        <div class="field"><label for="userRole">Role</label>
+        <div class="field">
+          <input type="text" id="userName" name="name" required value="${user.name || ''}" placeholder=" ">
+          <label for="userName">Full Name</label>
+        </div>
+        <div class="field">
+          <input type="email" id="userEmail" name="email" required value="${user.email || ''}" placeholder=" ">
+          <label for="userEmail">Email</label>
+        </div>
+        <div class="field">
           <select id="userRole" name="role" onchange="document.getElementById('deptField').style.display = this.value === 'teacher' ? 'grid' : 'none'">
             <option value="student" ${user.role === 'student' ? 'selected' : ''}>Student</option>
             <option value="teacher" ${user.role === 'teacher' ? 'selected' : ''}>Teacher</option>
           </select>
+          <label for="userRole">Role</label>
         </div>
-        <div class="field" id="deptField" style="display: ${user.role === 'teacher' ? 'grid' : 'none'}"><label for="userDept">Department</label><input type="text" id="userDept" name="department" value="${user.department || ''}"></div>
+        <div class="field" id="deptField" style="display: ${user.role === 'teacher' ? 'grid' : 'none'}">
+          <input type="text" id="userDept" name="department" value="${user.department || ''}" placeholder=" ">
+          <label for="userDept">Department</label>
+        </div>
       </div>
     `;
     $('#formModal').classList.add('open');
@@ -139,7 +149,26 @@
     state.ui.modalContext = 'course';
     const course = courseId ? state.courses.find(c => c.id === courseId) : {};
     $('#modalTitle').textContent = courseId ? 'Edit Course' : 'Add New Course';
-    $('#modalForm').innerHTML = `<div class="form-grid"><div class="field"><label for="courseName">Course Name</label><input type="text" id="courseName" name="name" required value="${course.name || ''}"></div><div class="field"><label for="courseCode">Course Code</label><input type="text" id="courseCode" name="code" required value="${course.code || ''}"></div><div class="field"><label for="courseDept">Department</label><input type="text" id="courseDept" name="department" required value="${course.department || ''}"></div><div class="field"><label for="courseCredits">Credits</label><input type="number" id="courseCredits" name="credits" required value="${course.credits || ''}"></div></div>`;
+    $('#modalForm').innerHTML = `
+      <div class="form-grid">
+        <div class="field">
+          <input type="text" id="courseName" name="name" required value="${course.name || ''}" placeholder=" ">
+          <label for="courseName">Course Name</label>
+        </div>
+        <div class="field">
+          <input type="text" id="courseCode" name="code" required value="${course.code || ''}" placeholder=" ">
+          <label for="courseCode">Course Code</label>
+        </div>
+        <div class="field">
+          <input type="text" id="courseDept" name="department" required value="${course.department || ''}" placeholder=" ">
+          <label for="courseDept">Department</label>
+        </div>
+        <div class="field">
+          <input type="number" id="courseCredits" name="credits" required value="${course.credits || ''}" placeholder=" ">
+          <label for="courseCredits">Credits</label>
+        </div>
+      </div>
+    `;
     $('#formModal').classList.add('open');
   }
 

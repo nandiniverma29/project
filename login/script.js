@@ -8,6 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
   loginForm.classList.add('active');
   signupForm.classList.remove('active');
   const messageContainer = document.getElementById('message-container');
+  
+  // Check if redirected from successful signup
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('signup') === 'success') {
+    messageContainer.textContent = 'Account created successfully! Please log in to continue.';
+    messageContainer.className = 'message-container success';
+    messageContainer.style.display = 'block';
+    
+    // Clean up URL by removing the parameter
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
   const roleButtons = loginForm.querySelectorAll('.role-btn');
 
   let selectedRole = 'student'; // default
@@ -21,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const API_BASE_URL = 'http://localhost:4000/api';
+  const API_BASE_URL = 'http://localhost:5000/api';
 
   // Seed demo users if none exist
   (function seedUsers(){
@@ -39,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   // Login form submission: try backend first, fallback to localStorage
-  loginForm.addEventListener('submit', async e => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     messageContainer.style.display = 'none';
 
@@ -105,6 +116,20 @@ document.addEventListener('DOMContentLoaded', () => {
       messageContainer.className = 'message-container error';
       messageContainer.style.display = 'block';
     }
+  };
+
+  // Add event listeners for form submission and Enter key
+  loginForm.addEventListener('submit', handleLogin);
+  
+  // Handle Enter key press in login form inputs
+  const loginInputs = loginForm.querySelectorAll('input');
+  loginInputs.forEach(input => {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleLogin(e);
+      }
+    });
   });
 
   // Signup form submission can remain as-is or be updated as needed

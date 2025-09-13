@@ -135,7 +135,7 @@
   document.documentElement.dataset.theme = state.theme;
 
   // --- Utils ---
-  const API_BASE_URL = "http://localhost:4000/api";
+  const API_BASE_URL = "http://localhost:5000/api";
   function getToken() {
     return localStorage.getItem("token");
   }
@@ -738,13 +738,25 @@
   $("#notifyBtn").onclick = () => toast("No new notifications");
 
   document.addEventListener("click", (e) => {
-    if (e.target.dataset.close) {
+    // Handle close buttons and overlay clicks
+    if (e.target.dataset.close || e.target.closest('[data-close="true"]')) {
       const openModal = e.target.closest(".modal.open");
       if (openModal) {
         if (openModal.id === "scannerModal") {
           stopCamera();
         }
         openModal.classList.remove("open");
+      }
+    }
+    
+    // Handle modal overlay clicks (clicking outside the modal)
+    if (e.target.classList.contains('modal-overlay')) {
+      const modal = e.target.closest('.modal');
+      if (modal && modal.classList.contains('open')) {
+        if (modal.id === "scannerModal") {
+          stopCamera();
+        }
+        modal.classList.remove("open");
       }
     }
   });

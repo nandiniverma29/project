@@ -192,7 +192,6 @@ body {
   justify-content: center;
 }
 .icon-btn:hover {
-  transform: scale(1.04);
   background: rgba(79, 70, 229, 0.06);
 }
 .badge {
@@ -525,7 +524,6 @@ body {
 .btn:focus,
 .icon-btn:hover,
 .icon-btn:focus {
-  transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
   outline: none;
 }
@@ -593,7 +591,7 @@ body {
 /* Micro animations for cards and widgets */
 .widget,
 .card {
-  will-change: transform, box-shadow;
+  will-change: box-shadow;
 }
 
 /* Subtle pulse animation for primary buttons */
