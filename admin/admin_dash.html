@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Dashboard — SmartApp</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="admin_dash.css">
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- jsPDF & autoTable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark material-icons-outlined">dashboard</div>
+        <div class="brand-text">
+          <span class="brand-name">SmartApp</span>
+          <span class="brand-sub">Admin Panel</span>
+        </div>
+      </div>
+
+      <nav class="nav" id="adminNav">
+        <button class="nav-item active" data-nav="dashboard">
+          <span class="material-icons-outlined">dashboard</span>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-nav="users">
+          <span class="material-icons-outlined">groups</span>
+          <span>User Management</span>
+        </button>
+        <button class="nav-item" data-nav="courses">
+          <span class="material-icons-outlined">menu_book</span>
+          <span>Course Management</span>
+        </button>
+        <button class="nav-item" data-nav="analytics">
+          <span class="material-icons-outlined">insights</span>
+          <span>System Analytics</span>
+        </button>
+        <button class="nav-item" data-nav="settings">
+          <span class="material-icons-outlined">settings</span>
+          <span>System Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-user">
+        <div class="avatar">A</div>
+        <div class="sidebar-user-meta">
+          <div class="sidebar-user-name">Admin User</div>
+          <div class="sidebar-user-role">Administrator</div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="topbar">
+        <div class="left">
+          <button id="sidebarToggle" class="icon-btn"><span class="material-icons-outlined">menu</span></button>
+          <h1 class="page-title" id="pageTitle">Dashboard</h1>
+        </div>
+        <div class="right">
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle theme"><span class="material-icons-outlined">light_mode</span></button>
+        </div>
+      </header>
+
+      <section class="content" id="contentArea">
+        <!-- Dynamic content -->
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="formModal">
+    <div class="modal-overlay" data-close="true"></div>
+    <div class="modal-card">
+      <header class="modal-header">
+        <h3 id="modalTitle">Modal</h3>
+        <button class="icon-btn" data-close="true"><span class="material-icons-outlined">close</span></button>
+      </header>
+      <form id="modalForm" class="modal-body"></form>
+      <footer class="modal-footer">
+        <button type="button" class="btn subtle" data-close="true">Close</button>
+        <button type="submit" form="modalForm" class="btn primary" id="modalSaveBtn">Save</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Attendance Modal -->
+  <div class="modal" id="attendanceModal">
+    <div class="modal-overlay" data-close="true"></div>
+    <div class="modal-card" style="max-width:720px;">
+      <header class="modal-header">
+        <h3 id="attendanceTitle">Attendance Report</h3>
+        <button class="icon-btn" data-close="true"><span class="material-icons-outlined">close</span></button>
+      </header>
+      <div class="modal-body">
+        <canvas id="attendanceChart" height="150"></canvas>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn subtle" data-close="true">Close</button>
+        <button type="button" class="btn primary" id="downloadAttendancePDF">Download PDF</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Toasts -->
+  <div id="toastStack" class="toast-stack"></div>
+
+  <!-- App JS -->
+  <script src="admin_dash.js"></script>
+</body>
+</html>

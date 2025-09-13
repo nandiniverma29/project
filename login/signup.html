@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Your Account - SmartApp</title>
+  <link rel="stylesheet" href="signup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Form Section -->
+    <div class="form-section">
+      <div class="form-wrapper">
+        <div class="form-header">
+          <h2>Create Your Account</h2>
+          <p>Join the future of education. It's quick and easy.</p>
+        </div>
+
+        <form id="signupForm">
+          <div class="input-group">
+            <span class="material-icons-outlined">person</span>
+            <input type="text" id="fullname" placeholder="Full Name" required>
+          </div>
+          <div class="input-group">
+            <span class="material-icons-outlined">email</span>
+            <input type="email" id="email" placeholder="Email Address" required>
+          </div>
+          <div class="input-group">
+            <span class="material-icons-outlined">lock</span>
+            <input type="password" id="password" placeholder="Create Password" required>
+          </div>
+          <button type="submit" class="submit-btn" id="submitBtn">Create Account</button>
+        </form>
+
+        
+
+        <div class="form-footer">
+          <p>Already have an account? <a href="index.html">Log In</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Section -->
+    <div class="image-section">
+      <div class="image-overlay"></div>
+      <div class="content-box">
+        <h3>Unlock Your Potential</h3>
+        <p>Join a community of learners and educators dedicated to excellence.</p>
+        <ul>
+          <li><span class="material-icons-outlined">check_circle</span> Automated Attendance</li>
+          <li><span class="material-icons-outlined">check_circle</span> Personalized Learning</li>
+          <li><span class="material-icons-outlined">check_circle</span> Smart Scheduling</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<!-- Role Selection Modal -->
+<div id="roleModal" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Select Your Role</h2>
+    <select id="roleSelect" required>
+      <option value="" disabled selected>Select your role</option>
+      <option value="student">Student</option>
+      <option value="teacher">Teacher</option>
+      <option value="admin">Admin</option>
+    </select>
+    <button id="roleConfirmBtn" disabled>Confirm</button>
+  </div>
+</div>
+
+
+  <script src="signup.js"></script>
+</body>
+</html>

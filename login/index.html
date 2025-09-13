@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Campus - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Panel: Form Content -->
+        <div class="form-container">
+            <div class="form-wrapper">
+                <div id="message-container" class="message-container"></div>
+                <div class="form-header">
+                    <h2 id="form-title">Welcome Back!</h2>
+                    <p id="form-subtitle">Log in to your account to continue.</p>
+                </div>
+                <div class="form-toggle">
+    <button id="login-tab-btn" class="toggle-btn active" onclick="window.location.href='index.html';">
+      Log In
+    </button>
+    <button id="signup-tab-btn" class="toggle-btn" onclick="window.location.href='signup.html';">
+      Sign Up
+    </button>
+</div>
+
+                <!-- Login Form -->
+                <form id="login-form" class="form active">
+                    <div class="role-selection">
+                        <label>Select your role:</label>
+                        <div class="role-buttons">
+                            <button type="button" class="role-btn active" data-role="student">Student</button>
+                            <button type="button" class="role-btn" data-role="teacher">Teacher</button>
+                            <button type="button" class="role-btn" data-role="admin">Admin</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Log In</span>
+                        <div class="spinner"></div>
+                    </button>
+                </form>
+
+                <!-- Signup Form -->
+                <form id="signup-form" class="form">
+                    <div class="input-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" name="fullname" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" name="password" required>
+                        <div class="password-strength">
+                            <div id="strength-bar" class="strength-bar"></div>
+                            <span id="strength-text" class="strength-text"></span>
+                        </div>
+                    </div>
+                     <div class="input-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" id="signup-confirm-password" name="confirm-password" required>
+                    </div>
+                    <div class="terms-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                    </div>
+                    <button type="submit" id="signup-submit-btn" class="submit-btn" disabled>
+                        <span class="btn-text">Create Account</span>
+                        <div class="spinner"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right Panel: Branding -->
+        <div class="info-container">
+            <div class="info-content">
+                <i data-feather="box" class="info-icon"></i>
+                <h1>Smart Curriculum & Attendance</h1>
+                <p>Automate attendance, optimize your schedule, and unlock personalized learning paths. Step into the future of education.</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+

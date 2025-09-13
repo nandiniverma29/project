@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Dashboard — Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="student_dash.css"/>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" aria-label="Primary">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">◼︎</div>
+        <div class="brand-text">
+          <span class="brand-name">SmartApp</span>
+          <span class="brand-sub">Student Portal</span>
+        </div>
+      </div>
+
+      <nav class="nav" id="mainNav">
+        <button class="nav-item" data-nav="dashboard">
+          <span class="material-icons-outlined">space_dashboard</span><span>Dashboard</span>
+        </button>
+        <button class="nav-item active" data-nav="profile">
+          <span class="material-icons-outlined">person</span><span>My Profile</span>
+        </button>
+        <button class="nav-item" data-nav="courses">
+          <span class="material-icons-outlined">school</span><span>My Courses</span>
+        </button>
+        <button class="nav-item" data-nav="analytics">
+          <span class="material-icons-outlined">insights</span><span>Analytics</span>
+        </button>
+        <button class="nav-item" data-nav="attendance">
+          <span class="material-icons-outlined">event_available</span><span>Attendance</span>
+        </button>
+        <button class="nav-item" data-nav="achievements">
+          <span class="material-icons-outlined">emoji_events</span><span>Achievements</span>
+        </button>
+        <button class="nav-item" data-nav="settings">
+          <span class="material-icons-outlined">settings</span><span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-user">
+        <div class="avatar" id="sidebar-avatar">S</div>
+        <div class="sidebar-user-meta">
+          <div class="sidebar-user-name" id="sidebar-name">Souvik Das</div>
+          <div class="sidebar-user-role">Student</div>
+          <div class="sidebar-user-points" id="sidebar-points"></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="left">
+          <button id="sidebarToggle" class="icon-btn" aria-label="Toggle menu">
+            <span class="material-icons-outlined">menu</span>
+          </button>
+          <h1 class="page-title" id="pageTitle">My Profile</h1>
+        </div>
+
+        <div class="right">
+          <button id="scanQRBtn" class="btn primary" style="gap: 12px;">
+            <span class="material-icons-outlined">qr_code_scanner</span>
+            <span>Mark Attendance</span>
+          </button>
+          
+          <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+            <span class="material-icons-outlined">light_mode</span>
+          </button>
+
+          <button id="notifyBtn" class="icon-btn" aria-label="Notifications">
+            <span class="material-icons-outlined">notifications</span>
+            <span class="badge" id="notifBadge">0</span>
+          </button>
+        </div>
+      </header>
+
+      <section class="content" id="contentArea">
+        </section>
+    </main>
+  </div>
+
+  <div class="modal" id="editModal" aria-hidden="true">
+    <div class="modal-overlay" data-close="true"></div>
+    <div class="modal-card">
+      <header class="modal-header">
+        <h3>Edit Profile</h3>
+        <button class="icon-btn" data-close="true"><span class="material-icons-outlined">close</span></button>
+      </header>
+      <form id="editForm" class="modal-body">
+        <div class="form-grid">
+          <label class="field"><span>Name</span><input id="f_name" required/></label>
+          <label class="field"><span>Student ID</span><input id="f_id" disabled/></label>
+          <label class="field"><span>Email</span><input id="f_email" type="email" required/></label>
+          <label class="field"><span>Phone</span><input id="f_phone" required/></label>
+          <label class="field"><span>DOB</span><input id="f_dob" type="date"/></label>
+          <label class="field span-2"><span>Address</span><input id="f_address"/></label>
+          <label class="field"><span>Major</span><input id="f_major"/></label>
+          <label class="field"><span>Year</span>
+            <select id="f_year">
+              <option>1st Year</option>
+              <option>2nd Year</option>
+              <option>3rd Year</option>
+              <option>4th Year</option>
+            </select>
+          </label>
+          <label class="field"><span>Enrollment Date</span><input id="f_enrollmentDate" type="date"/></label>
+          <label class="field"><span>Career Goal</span><input id="f_careerGoal"/></label>
+          <label class="field span-2"><span>Interests</span><input id="f_interests"/></label>
+        </div>
+        <footer class="modal-footer">
+          <button type="button" class="btn subtle" data-close="true">Cancel</button>
+          <button type="submit" class="btn primary">Save</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="scannerModal" aria-hidden="true">
+    <div class="modal-overlay" data-close="true"></div>
+    <div class="modal-card" style="max-width: 480px; text-align: center;">
+      <header class="modal-header">
+        <h3>Scan Attendance QR</h3>
+        <button class="icon-btn" data-close="true"><span class="material-icons-outlined">close</span></button>
+      </header>
+      <div class="modal-body">
+        <div id="scanner-ui">
+          <p class="muted-text">Allow camera access and point it at the QR code.</p>
+          <div class="scanner-box">
+            <video id="qr-video" playsinline style="width: 100%; height: 100%; border-radius: 12px;"></video>
+            <canvas id="qr-canvas" style="display: none;"></canvas>
+          </div>
+          <p id="scanner-status">Requesting camera access...</p>
+        </div>
+        <div id="scanner-success" style="display: none;">
+          <span class="material-icons-outlined success-icon">check_circle</span>
+          <h2>Attendance Marked!</h2>
+          <p>You have been successfully marked present for <strong>Data Structures (CS201)</strong>.</p>
+          <p>Timestamp: <strong id="scan-timestamp"></strong></p>
+        </div>
+         <div id="scanner-error" style="display: none;">
+          <span class="material-icons-outlined danger-icon">error</span>
+          <h2>Camera Error</h2>
+          <p id="error-message">Could not access camera. Please ensure you are on a secure (https) connection and have granted permission.</p>
+        </div>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn" id="testQRBtn">Test QR</button>
+        <button type="button" class="btn" data-close="true">Close</button>
+      </footer>
+    </div>
+  </div>
+
+  <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+
+  <script src="student_dash.js"></script>
+</body>
+</html>
