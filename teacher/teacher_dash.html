@@ -1,80 +1,124 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Teacher Dashboard — SmartApp</title>
-  <link rel="stylesheet" href="teacher_dash.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-</head>
-<body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-mark material-icons-outlined">school</div>
-        <div class="brand-text">
-          <span class="brand-name">SmartApp</span>
-          <span class="brand-sub">Faculty Panel</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Teacher Dashboard — SmartApp</title>
+    <link rel="stylesheet" href="teacher_dash.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark material-icons-outlined" aria-hidden="true">
+            dashboard
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">SmartApp</span>
+            <span class="brand-sub">Faculty Panel</span>
+          </div>
         </div>
-      </div>
 
-      <nav class="nav" id="mainNav">
-        <p class="nav-heading">Core</p>
-        <button class="nav-item active" data-nav="dashboard"><span class="material-icons-outlined">dashboard</span><span>Dashboard</span></button>
-        <button class="nav-item" data-nav="my_classes"><span class="material-icons-outlined">class</span><span>My Classes</span></button>
-        <button class="nav-item" data-nav="attendance"><span class="material-icons-outlined">rule</span><span>Attendance</span></button>
-        
-        <p class="nav-heading">Interaction</p>
-        <button class="nav-item" data-nav="announcements"><span class="material-icons-outlined">campaign</span><span>Announcements</span></button>
-        <button class="nav-item" data-nav="messages"><span class="material-icons-outlined">chat</span><span>Messages</span></button>
+        <nav class="nav" id="mainNav">
+          <p class="nav-heading">Core</p>
+          <button class="nav-item active" data-nav="dashboard">
+            <span class="material-icons-outlined">dashboard</span
+            ><span>Dashboard</span>
+          </button>
+          <button class="nav-item" data-nav="my_classes">
+            <span class="material-icons-outlined">class</span
+            ><span>My Classes</span>
+          </button>
+          <button class="nav-item" data-nav="attendance">
+            <span class="material-icons-outlined">rule</span
+            ><span>Attendance</span>
+          </button>
 
-        <p class="nav-heading">Academics</p>
-        <button class="nav-item" data-nav="reports"><span class="material-icons-outlined">analytics</span><span>Reports</span></button>
-        <button class="nav-item" data-nav="calendar"><span class="material-icons-outlined">calendar_today</span><span>Calendar</span></button>
-      </nav>
+          <p class="nav-heading">Interaction</p>
+          <button class="nav-item" data-nav="announcements">
+            <span class="material-icons-outlined">campaign</span
+            ><span>Announcements</span>
+          </button>
+          <button class="nav-item" data-nav="messages">
+            <span class="material-icons-outlined">chat</span
+            ><span>Messages</span>
+          </button>
 
-      <div class="sidebar-user" id="sidebarUser">
-        </div>
-    </aside>
+          <p class="nav-heading">Academics</p>
+          <button class="nav-item" data-nav="reports">
+            <span class="material-icons-outlined">analytics</span
+            ><span>Reports</span>
+          </button>
+          <button class="nav-item" data-nav="calendar">
+            <span class="material-icons-outlined">calendar_today</span
+            ><span>Calendar</span>
+          </button>
+        </nav>
 
-    <main class="main">
-      <header class="topbar">
-        <div class="left">
-          <button id="sidebarToggle" class="icon-btn"><span class="material-icons-outlined">menu</span></button>
-          <h1 class="page-title" id="pageTitle">Dashboard</h1>
-        </div>
-        <div class="right">
-          <button id="themeToggle" class="icon-btn" aria-label="Toggle theme"><span class="material-icons-outlined">light_mode</span></button>
-          <button class="icon-btn" data-action="edit-profile"><span class="material-icons-outlined">account_circle</span></button>
-        </div>
-      </header>
+        <div class="sidebar-user" id="sidebarUser"></div>
+      </aside>
 
-      <section class="content" id="contentArea">
-        </section>
-    </main>
-  </div>
+      <main class="main">
+        <header class="topbar">
+          <div class="left">
+            <button id="sidebarToggle" class="icon-btn">
+              <span class="material-icons-outlined">menu</span>
+            </button>
+            <h1 class="page-title" id="pageTitle">Dashboard</h1>
+          </div>
+          <div class="right">
+            <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+              <span class="material-icons-outlined">light_mode</span>
+            </button>
+            <button class="icon-btn" data-action="edit-profile">
+              <span class="material-icons-outlined">account_circle</span>
+            </button>
+          </div>
+        </header>
 
-  <div class="modal" id="formModal">
-    <div class="modal-overlay" data-close="true"></div>
-    <div class="modal-card">
-      <header class="modal-header">
-        <h3 id="modalTitle">Modal</h3>
-        <button class="icon-btn" data-close="true"><span class="material-icons-outlined">close</span></button>
-      </header>
-      <form id="modalForm" class="modal-body"></form>
-      <footer class="modal-footer">
-        <button type="button" class="btn subtle" data-close="true">Cancel</button>
-        <button type="submit" form="modalForm" class="btn primary" id="modalSaveBtn">Save</button>
-      </footer>
+        <section class="content" id="contentArea"></section>
+      </main>
     </div>
-  </div>
 
-  <div id="toastStack" class="toast-stack"></div>
+    <div class="modal" id="formModal">
+      <div class="modal-overlay" data-close="true"></div>
+      <div class="modal-card">
+        <header class="modal-header">
+          <h3 id="modalTitle">Modal</h3>
+          <button class="icon-btn" data-close="true">
+            <span class="material-icons-outlined">close</span>
+          </button>
+        </header>
+        <form id="modalForm" class="modal-body"></form>
+        <footer class="modal-footer">
+          <button type="button" class="btn subtle" data-close="true">
+            Cancel
+          </button>
+          <button
+            type="submit"
+            form="modalForm"
+            class="btn primary"
+            id="modalSaveBtn"
+          >
+            Save
+          </button>
+        </footer>
+      </div>
+    </div>
 
-  <script src="teacher_dash.js"></script>
-</body>
+    <div id="toastStack" class="toast-stack"></div>
+
+    <script src="teacher_dash.js"></script>
+  </body>
 </html>

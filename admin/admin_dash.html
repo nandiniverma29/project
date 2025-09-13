@@ -1,123 +1,255 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin Dashboard — SmartApp</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin Dashboard — SmartApp</title>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="admin_dash.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="admin_dash.css" />
 
-  <!-- Fonts & Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <!-- Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- jsPDF & autoTable -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-</head>
-<body>
-  <div class="app">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-mark material-icons-outlined">dashboard</div>
-        <div class="brand-text">
-          <span class="brand-name">SmartApp</span>
-          <span class="brand-sub">Admin Panel</span>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jsPDF & autoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar" role="navigation" aria-label="Main navigation">
+        <div class="brand">
+          <div class="brand-mark material-icons-outlined" aria-hidden="true">
+            dashboard
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">SmartApp</span>
+            <span class="brand-sub">Admin Panel</span>
+          </div>
         </div>
-      </div>
 
-      <nav class="nav" id="adminNav">
-        <button class="nav-item active" data-nav="dashboard">
-          <span class="material-icons-outlined">dashboard</span>
-          <span>Dashboard</span>
-        </button>
-        <button class="nav-item" data-nav="users">
-          <span class="material-icons-outlined">groups</span>
-          <span>User Management</span>
-        </button>
-        <button class="nav-item" data-nav="courses">
-          <span class="material-icons-outlined">menu_book</span>
-          <span>Course Management</span>
-        </button>
-        <button class="nav-item" data-nav="analytics">
-          <span class="material-icons-outlined">insights</span>
-          <span>System Analytics</span>
-        </button>
-        <button class="nav-item" data-nav="settings">
-          <span class="material-icons-outlined">settings</span>
-          <span>System Settings</span>
-        </button>
-      </nav>
+        <nav
+          class="nav"
+          id="adminNav"
+          role="navigation"
+          aria-label="Admin navigation menu"
+        >
+          <button
+            class="nav-item active"
+            data-nav="dashboard"
+            aria-label="Go to Dashboard"
+            role="menuitem"
+          >
+            <span class="material-icons-outlined" aria-hidden="true"
+              >dashboard</span
+            >
+            <span>Dashboard</span>
+          </button>
+          <button
+            class="nav-item"
+            data-nav="users"
+            aria-label="Go to User Management"
+            role="menuitem"
+          >
+            <span class="material-icons-outlined" aria-hidden="true"
+              >groups</span
+            >
+            <span>User Management</span>
+          </button>
+          <button
+            class="nav-item"
+            data-nav="courses"
+            aria-label="Go to Course Management"
+            role="menuitem"
+          >
+            <span class="material-icons-outlined" aria-hidden="true"
+              >menu_book</span
+            >
+            <span>Course Management</span>
+          </button>
+          <button
+            class="nav-item"
+            data-nav="analytics"
+            aria-label="Go to System Analytics"
+            role="menuitem"
+          >
+            <span class="material-icons-outlined" aria-hidden="true"
+              >insights</span
+            >
+            <span>System Analytics</span>
+          </button>
+          <button
+            class="nav-item"
+            data-nav="settings"
+            aria-label="Go to System Settings"
+            role="menuitem"
+          >
+            <span class="material-icons-outlined" aria-hidden="true"
+              >settings</span
+            >
+            <span>System Settings</span>
+          </button>
+        </nav>
 
-      <div class="sidebar-user">
-        <div class="avatar">A</div>
-        <div class="sidebar-user-meta">
-          <div class="sidebar-user-name">Admin User</div>
-          <div class="sidebar-user-role">Administrator</div>
+        <div
+          class="sidebar-user"
+          role="region"
+          aria-label="Current user information"
+        >
+          <div class="avatar" aria-label="Admin avatar">A</div>
+          <div class="sidebar-user-meta">
+            <div class="sidebar-user-name">Admin User</div>
+            <div class="sidebar-user-role">Administrator</div>
+          </div>
         </div>
-      </div>
-    </aside>
+      </aside>
 
-    <!-- Main -->
-    <main class="main">
-      <header class="topbar">
-        <div class="left">
-          <button id="sidebarToggle" class="icon-btn"><span class="material-icons-outlined">menu</span></button>
-          <h1 class="page-title" id="pageTitle">Dashboard</h1>
-        </div>
-        <div class="right">
-          <button id="themeToggle" class="icon-btn" aria-label="Toggle theme"><span class="material-icons-outlined">light_mode</span></button>
-        </div>
-      </header>
+      <!-- Main -->
+      <main class="main" role="main">
+        <header class="topbar" role="banner">
+          <div class="left">
+            <button
+              id="sidebarToggle"
+              class="icon-btn"
+              aria-label="Toggle sidebar menu"
+              aria-expanded="false"
+            >
+              <span class="material-icons-outlined" aria-hidden="true"
+                >menu</span
+              >
+            </button>
+            <h1 class="page-title" id="pageTitle">Dashboard</h1>
+          </div>
+          <div class="right">
+            <button
+              id="themeToggle"
+              class="icon-btn"
+              aria-label="Toggle between light and dark theme"
+            >
+              <span class="material-icons-outlined" aria-hidden="true"
+                >light_mode</span
+              >
+            </button>
+          </div>
+        </header>
 
-      <section class="content" id="contentArea">
-        <!-- Dynamic content -->
-      </section>
-    </main>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal" id="formModal">
-    <div class="modal-overlay" data-close="true"></div>
-    <div class="modal-card">
-      <header class="modal-header">
-        <h3 id="modalTitle">Modal</h3>
-        <button class="icon-btn" data-close="true"><span class="material-icons-outlined">close</span></button>
-      </header>
-      <form id="modalForm" class="modal-body"></form>
-      <footer class="modal-footer">
-        <button type="button" class="btn subtle" data-close="true">Close</button>
-        <button type="submit" form="modalForm" class="btn primary" id="modalSaveBtn">Save</button>
-      </footer>
+        <section
+          class="content"
+          id="contentArea"
+          role="main"
+          aria-live="polite"
+        >
+          <!-- Dynamic content -->
+        </section>
+      </main>
     </div>
-  </div>
 
-  <!-- Attendance Modal -->
-  <div class="modal" id="attendanceModal">
-    <div class="modal-overlay" data-close="true"></div>
-    <div class="modal-card" style="max-width:720px;">
-      <header class="modal-header">
-        <h3 id="attendanceTitle">Attendance Report</h3>
-        <button class="icon-btn" data-close="true"><span class="material-icons-outlined">close</span></button>
-      </header>
-      <div class="modal-body">
-        <canvas id="attendanceChart" height="150"></canvas>
+    <!-- Modal -->
+    <div
+      class="modal"
+      id="formModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal-overlay" data-close="true" aria-hidden="true"></div>
+      <div class="modal-card">
+        <header class="modal-header">
+          <h3 id="modalTitle">Modal</h3>
+          <button class="icon-btn" data-close="true" aria-label="Close modal">
+            <span class="material-icons-outlined" aria-hidden="true"
+              >close</span
+            >
+          </button>
+        </header>
+        <form id="modalForm" class="modal-body" role="form"></form>
+        <footer class="modal-footer">
+          <button
+            type="button"
+            class="btn subtle"
+            data-close="true"
+            aria-label="Close modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            form="modalForm"
+            class="btn primary"
+            id="modalSaveBtn"
+            aria-label="Save changes"
+          >
+            Save
+          </button>
+        </footer>
       </div>
-      <footer class="modal-footer">
-        <button type="button" class="btn subtle" data-close="true">Close</button>
-        <button type="button" class="btn primary" id="downloadAttendancePDF">Download PDF</button>
-      </footer>
     </div>
-  </div>
 
-  <!-- Toasts -->
-  <div id="toastStack" class="toast-stack"></div>
+    <!-- Attendance Modal -->
+    <div
+      class="modal"
+      id="attendanceModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="attendanceTitle"
+    >
+      <div class="modal-overlay" data-close="true" aria-hidden="true"></div>
+      <div class="modal-card" style="max-width: 720px">
+        <header class="modal-header">
+          <h3 id="attendanceTitle">Attendance Report</h3>
+          <button
+            class="icon-btn"
+            data-close="true"
+            aria-label="Close attendance report modal"
+          >
+            <span class="material-icons-outlined" aria-hidden="true"
+              >close</span
+            >
+          </button>
+        </header>
+        <div class="modal-body">
+          <canvas
+            id="attendanceChart"
+            height="150"
+            role="img"
+            aria-label="Attendance chart visualization"
+          ></canvas>
+        </div>
+        <footer class="modal-footer">
+          <button
+            type="button"
+            class="btn subtle"
+            data-close="true"
+            aria-label="Close attendance report modal"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn primary"
+            id="downloadAttendancePDF"
+            aria-label="Download attendance report as PDF"
+          >
+            Download PDF
+          </button>
+        </footer>
+      </div>
+    </div>
 
-  <!-- App JS -->
-  <script src="admin_dash.js"></script>
-</body>
+    <!-- Toasts -->
+    <div id="toastStack" class="toast-stack"></div>
+
+    <!-- App JS -->
+    <script src="admin_dash.js"></script>
+  </body>
 </html>

@@ -1,77 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Your Account - SmartApp</title>
-  <link rel="stylesheet" href="signup.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-</head>
-<body>
-  <div class="container">
-    <!-- Form Section -->
-    <div class="form-section">
-      <div class="form-wrapper">
-        <div class="form-header">
-          <h2>Create Your Account</h2>
-          <p>Join the future of education. It's quick and easy.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Campus - Create Account</title>
+    <link rel="stylesheet" href="signup.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Form Section -->
+      <div class="form-section">
+        <div class="form-wrapper">
+          <div id="message-container" class="message-container"></div>
+          <div class="form-header">
+            <h2>Create Your Account</h2>
+            <p>Join the future of education. It's quick and easy.</p>
+          </div>
+
+          <form id="signupForm">
+            <div class="input-group">
+              <input
+                type="text"
+                id="fullname"
+                placeholder=" "
+                required
+                aria-label="Full Name"
+              />
+              <label for="fullname">Full Name</label>
+            </div>
+            <div class="input-group">
+              <input
+                type="email"
+                id="email"
+                placeholder=" "
+                required
+                aria-label="Email Address"
+              />
+              <label for="email">Email Address</label>
+            </div>
+            <div class="input-group">
+              <input
+                type="password"
+                id="password"
+                placeholder=" "
+                required
+                aria-label="Create Password"
+              />
+              <label for="password">Create Password</label>
+            </div>
+            <button type="submit" class="submit-btn" id="submitBtn">
+              Create Account
+            </button>
+          </form>
+
+          <div class="form-footer">
+            <p>Already have an account? <a href="index.html">Log In</a></p>
+          </div>
         </div>
+      </div>
 
-        <form id="signupForm">
-          <div class="input-group">
-            <span class="material-icons-outlined">person</span>
-            <input type="text" id="fullname" placeholder="Full Name" required>
-          </div>
-          <div class="input-group">
-            <span class="material-icons-outlined">email</span>
-            <input type="email" id="email" placeholder="Email Address" required>
-          </div>
-          <div class="input-group">
-            <span class="material-icons-outlined">lock</span>
-            <input type="password" id="password" placeholder="Create Password" required>
-          </div>
-          <button type="submit" class="submit-btn" id="submitBtn">Create Account</button>
-        </form>
-
-        
-
-        <div class="form-footer">
-          <p>Already have an account? <a href="index.html">Log In</a></p>
+      <!-- Image Section -->
+      <div class="image-section">
+        <div class="image-overlay"></div>
+        <div class="content-box">
+          <h3>Unlock Your Potential</h3>
+          <p>
+            Join a community of learners and educators dedicated to excellence.
+          </p>
+          <ul>
+            <li>
+              <span class="material-icons-outlined">check_circle</span>
+              Automated Attendance
+            </li>
+            <li>
+              <span class="material-icons-outlined">check_circle</span>
+              Personalized Learning
+            </li>
+            <li>
+              <span class="material-icons-outlined">check_circle</span> Smart
+              Scheduling
+            </li>
+          </ul>
         </div>
       </div>
     </div>
+    
+    <!-- Fixed Theme Toggle Button -->
+    <button class="theme-toggle" aria-label="Toggle dark mode">
+      <i data-feather="moon"></i>
+    </button>
 
-    <!-- Image Section -->
-    <div class="image-section">
-      <div class="image-overlay"></div>
-      <div class="content-box">
-        <h3>Unlock Your Potential</h3>
-        <p>Join a community of learners and educators dedicated to excellence.</p>
-        <ul>
-          <li><span class="material-icons-outlined">check_circle</span> Automated Attendance</li>
-          <li><span class="material-icons-outlined">check_circle</span> Personalized Learning</li>
-          <li><span class="material-icons-outlined">check_circle</span> Smart Scheduling</li>
-        </ul>
+    <!-- Role Selection Modal -->
+    <div id="roleModal" class="modal-overlay">
+      <div class="modal-content">
+        <h2>Select Your Role</h2>
+        <select id="roleSelect" required>
+          <option value="" disabled selected>Select your role</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button id="roleConfirmBtn" disabled>Confirm</button>
       </div>
     </div>
-  </div>
 
-<!-- Role Selection Modal -->
-<div id="roleModal" class="modal-overlay">
-  <div class="modal-content">
-    <h2>Select Your Role</h2>
-    <select id="roleSelect" required>
-      <option value="" disabled selected>Select your role</option>
-      <option value="student">Student</option>
-      <option value="teacher">Teacher</option>
-      <option value="admin">Admin</option>
-    </select>
-    <button id="roleConfirmBtn" disabled>Confirm</button>
-  </div>
-</div>
-
-
-  <script src="signup.js"></script>
-</body>
+    <script src="signup.js"></script>
+    <script>
+      // Initialize feather icons
+      feather.replace();
+      
+      // Load saved theme on page load
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.querySelector('.theme-toggle').innerHTML = '<i data-feather="sun"></i>';
+        feather.replace();
+      }
+      
+      const themeToggle = document.querySelector(".theme-toggle");
+      themeToggle.addEventListener("click", () => {
+        const html = document.documentElement;
+        const currentTheme = html.getAttribute("data-theme");
+        if (currentTheme === "dark") {
+          html.removeAttribute("data-theme");
+          localStorage.setItem('theme', 'light');
+          themeToggle.innerHTML = '<i data-feather="moon"></i>';
+        } else {
+          html.setAttribute("data-theme", "dark");
+          localStorage.setItem('theme', 'dark');
+          themeToggle.innerHTML = '<i data-feather="sun"></i>';
+        }
+        feather.replace(); // Re-render feather icons
+      });
+    </script>
+  </body>
 </html>

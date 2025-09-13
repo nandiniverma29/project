@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   feather.replace();
-
+  
+  // Ensure login form is always shown when page loads
   const loginForm = document.getElementById('login-form');
   const signupForm = document.getElementById('signup-form');
+  loginForm.classList.add('active');
+  signupForm.classList.remove('active');
   const messageContainer = document.getElementById('message-container');
   const roleButtons = loginForm.querySelectorAll('.role-btn');
 
@@ -60,7 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const usersRaw = localStorage.getItem('users');
         const users = usersRaw ? JSON.parse(usersRaw) : [];
         const user = users.find(u => u.email === email && u.password === password);
-        if (!user) throw apiErr; // propagate original error if no local match
+        if (!user) {
+          // Check if user exists in localStorage but with wrong password
+          const userExists = users.find(u => u.email === email);
+          if (userExists) {
+            throw new Error('Invalid password. Please try again.');
+          } else {
+            throw new Error('User not found. Please sign up first.');
+          }
+        }
         data = { id: user.id || Date.now().toString(), name: user.name, email: user.email, role: user.role, token: 'local-' + (user.id || Date.now().toString()) };
       }
 

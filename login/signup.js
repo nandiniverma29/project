@@ -56,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fallback to localStorage user creation
         const usersRaw = localStorage.getItem('users');
         const users = usersRaw ? JSON.parse(usersRaw) : [];
-        if (users.some(u => u.email === email)) throw apiErr;
+        if (users.some(u => u.email === email)) {
+          throw new Error('Email already registered. Please use a different email or try logging in.');
+        }
         const newUser = { id: Date.now().toString(), ...signupData };
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
@@ -64,8 +66,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (ok) {
-        alert('Sign-up successful! Please log in to continue.');
-        window.location.href = './index.html';
+        // Show success message
+        const messageContainer = document.getElementById('message-container');
+        if (messageContainer) {
+          messageContainer.textContent = 'Sign-up successful! Please log in to continue.';
+          messageContainer.className = 'message-container success';
+          messageContainer.style.display = 'block';
+        }
+        
+        // Hide signup form and show login form
+        signupForm.style.display = 'none';
+        const loginForm = document.getElementById('login-form');
+        if (loginForm) {
+          loginForm.style.display = 'block';
+          loginForm.classList.add('active');
+        }
+        
+        // Reset form
+        signupForm.reset();
+        submitButton.disabled = false;
+        submitButton.textContent = 'Create Account';
+        
+        // Scroll to top to show the login form
+        window.scrollTo(0, 0);
       }
     } catch (error) {
       alert(`Signup Failed: ${error.message}`);
